@@ -5,9 +5,12 @@
  */
 package model;
 
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -21,6 +24,8 @@ public class Estabelecimentos extends DadosGerais {
     private String cnjp;
     @ManyToOne
     private Usuarios usuarioDono;
+    @OneToMany(mappedBy = "estabelecimento", cascade = CascadeType.ALL)
+    private List<Funcionario> funcionarios;
 
     public String getRazaoSocial() {
         return razaoSocial;
@@ -52,6 +57,14 @@ public class Estabelecimentos extends DadosGerais {
 
     public void setUsuarioDono(Usuarios usuarioDono) {
         this.usuarioDono = usuarioDono;
+    }
+
+    public List<Funcionario> getFuncionarios() {
+        return funcionarios;
+    }
+
+    public void setFuncionarios(List<Funcionario> funcionarios) {
+        this.funcionarios = funcionarios;
     }
     
 }

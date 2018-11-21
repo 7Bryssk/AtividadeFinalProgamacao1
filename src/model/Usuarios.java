@@ -10,6 +10,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -24,6 +25,8 @@ public class Usuarios extends DadosGerais{
     private String cpf;
     @OneToMany(mappedBy = "usuarioDono", cascade = CascadeType.ALL)
     private List<Estabelecimentos> estabelecimentos;
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private Funcionario funcionario;
 
     public String getNome() {
         return nome;
@@ -55,5 +58,21 @@ public class Usuarios extends DadosGerais{
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public List<Estabelecimentos> getEstabelecimentos() {
+        return estabelecimentos;
+    }
+
+    public void setEstabelecimentos(List<Estabelecimentos> estabelecimentos) {
+        this.estabelecimentos = estabelecimentos;
+    }
+
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
 }
